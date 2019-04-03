@@ -1,0 +1,19 @@
+//
+//  MCPrefixHeader.pch
+//  SingleViewAPP
+//
+//  Created by wr on 2019/4/2.
+//  Copyright © 2019年 wanmengchao. All rights reserved.
+//
+
+#ifndef MCPrefixHeader_pch
+#define MCPrefixHeader_pch
+#import "Masonry.h"
+#import "MCMacroDefinition.h"
+#import "UIView+Warning.h"
+#import "MCNetWorkRequest.h"
+#import "UIImageView+WebCache.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* MCPrefixHeader_pch */
