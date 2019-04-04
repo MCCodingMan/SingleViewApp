@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MCMainHomeViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MCMainTabView : UIView
 
+//点击事件代理
+@property (nonatomic, weak) id<MCMainTabViewDelegate>delegate;
+
+/**
+ 初始化tabBarView
+ */
 - (void)initTabBarView;
 
 @end

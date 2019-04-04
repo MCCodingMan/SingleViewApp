@@ -21,10 +21,12 @@
 //字体宏定义
 #define MC_UIFont(fontSize) [UIFont systemFontOfSize:fontSize]
 #define MC_UIBoldFont(fontSize) [UIFont boldSystemFontOfSize:fontSize]
+
+#define MC_ImageWithName(imgName) [UIImage imageNamed:imgName]
 //单利宏定义
 #define MC_KeyWindow [UIApplication sharedApplication].keyWindow
 #define MC_UserDefaults [NSUserDefaults standardUserDefaults]
-
+//网络请求单列
 #define MC_NetWorkRequest [MCNetWorkRequest shareRequest]
 //永久存储对象
 #define MC_SetUserDefaults(object, key)                                                                                                 \
