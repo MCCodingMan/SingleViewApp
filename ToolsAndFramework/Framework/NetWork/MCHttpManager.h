@@ -17,7 +17,6 @@ typedef void(^ErrorBlock)(NSError *error);
 @interface MCHttpManager : NSObject
 
 @property (nonatomic, assign) NSInteger postCount;
-
 @property (nonatomic, assign) NSInteger lastPostCount;
 
 /**
@@ -45,10 +44,6 @@ typedef void(^ErrorBlock)(NSError *error);
  */
 - (void)postNetworkWithRequest:(MCBaseRequest *)request completeBlock:(CompletionBlock)successBlock errorBlock:(ErrorBlock)errorBlock;
 
-/**
- 取消网络请求
- */
-- (void)cancelNetwork;
 
 @end
 

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MCHttpManager.h"
+#import "MCQueryCategoriesRequest.h"
+#import "MCQueryCategoriesBooksListRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,6 +31,77 @@ NS_ASSUME_NONNULL_BEGIN
  @param errorBlock 失败回调
  */
 - (void)queryJockesWithType:(int)type page:(int)page completionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
+
+/**
+ 2019.5.13 请求小说分类
+ 
+ @param successBlock 成功回调
+ @param errorBlock 失败回调
+ */
+- (void)queryCategoriesWithCompletionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
+
+/**
+ 2019.5.15 请求分类小说列表
+ 
+ @param request 小说分类请求model
+ @param successBlock 成功回调
+ @param errorBlock 失败回调
+ */
+- (void)queryCategoriesBookListWithRequst:(MCQueryCategoriesBooksListRequest *)request CompletionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
+
+/**
+ 2019.5.20 请求小说详情
+ 
+ @param bookId 小说ID
+ @param successBlock 成功回调
+ @param errorBlock 失败回调
+ */
+- (void)queryBookInfoWithBookID:(NSString *)bookId CompletionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
+
+/**
+ 2019.5.20 请求小说书籍源
+ 
+ @param bookId 小说ID
+ @param successBlock 成功回调
+ @param errorBlock 失败回调
+ */
+- (void)queryBookSourceWithBookID:(NSString *)bookId CompletionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
+
+/**
+ 2019.5.20 请求小说章节
+ 
+ @param sourceID 资源ID
+ @param successBlock 成功回调
+ @param errorBlock 失败回调
+ */
+- (void)queryBookChapterWithSourceID:(NSString *)sourceID CompletionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
+
+/**
+ 2019.5.21 请求小说章节内容
+ 
+ @param chapterLink 资源Link
+ @param successBlock 成功回调
+ @param errorBlock 失败回调
+ */
+- (void)queryBookChapterInfoWithChapterLink:(NSString *)chapterLink CompletionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
+
+/**
+ 2019.5.28 请求文字补全
+ 
+ @param keyWord 关键字
+ @param successBlock 成功回调
+ @param errorBlock 失败回调
+ */
+- (void)queryCompleteNameWithKeyWord:(NSString *)keyWord CompletionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
+
+/**
+ 2019.5.28 搜索小说
+ 
+ @param keyWord 关键字
+ @param successBlock 成功回调
+ @param errorBlock 失败回调
+ */
+- (void)querySearchNameWithKeyWord:(NSString *)keyWord CompletionBlock:(CompletionBlock)successBlock faileBlock:(ErrorBlock)errorBlock;
 
 @end
 

@@ -112,7 +112,7 @@
  释放
  */
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:@"MCRefreshTableView"];
+    [MC_NotificationCenter removeObserver:self forKeyPath:@"MCRefreshTableView"];
 }
 
 

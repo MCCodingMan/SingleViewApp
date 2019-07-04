@@ -7,8 +7,12 @@
 //
 
 #import "MCMainTabBarViewController.h"
+#import "MCBooksHomeViewController.h"
 #import "MCTextViewController.h"
 #import "MCImageViewController.h"
+#import "MCGifViewController.h"
+#import "MCVideoViewController.h"
+#import "MCAllViewController.h"
 #import "MCMainTabView.h"
 
 @interface MCMainTabBarViewController ()<MCMainTabViewDelegate>
@@ -24,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self injected];
+    [self initNavigation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -36,7 +41,18 @@
     [super viewDidDisappear:animated];
     [MC_NotificationCenter removeObserver:self];
 }
+- (void)initNavigation {
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setImage:[UIImage imageNamed:@"icon_pic_book"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
 
+- (void)rightButtonClick {
+    MCBooksHomeViewController *bookVC = [[MCBooksHomeViewController alloc] init];
+    [self.navigationController pushViewController:bookVC animated:YES];
+}
 /**
  热跟新重载方法
  */
@@ -69,10 +85,17 @@
  */
 - (void)addChildSubviews {
     MCTextViewController *vc1 = [[MCTextViewController alloc] init];
+    vc1.title = @"文字";
     MCImageViewController *vc2 = [[MCImageViewController alloc] init];
-    UIViewController *vc3 = [[UIViewController alloc] init];
-    UIViewController *vc4 = [[UIViewController alloc] init];
-    [self setViewControllers:@[vc1,vc2,vc3,vc4] animated:NO];
+    vc2.title = @"图片";
+    MCGifViewController *vc3 = [[MCGifViewController alloc] init];
+    vc3.title = @"动图";
+    MCAllViewController *vc4 = [[MCAllViewController alloc] init];
+    vc4.title = @"全部";
+    MCVideoViewController *vc5 = [[MCVideoViewController alloc] init];
+    vc5.title = @"视频";
+    [self setViewControllers:@[vc4,vc1,vc2,vc3,vc5] animated:NO];
+    self.title = self.selectedViewController.title;
 }
 
 #pragma mark -- MCMainTabViewDelegate
@@ -84,6 +107,7 @@
  */
 - (void)clickTabButtonChangeViewControllerWithTag:(NSInteger)selectItem {
     [self setSelectedIndex:selectItem];
+    self.title = self.selectedViewController.title;
 }
 
 #pragma mark -- NSNotificationCenter

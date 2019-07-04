@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIImage *backGroundImage;
 
+- (void)startLoadingView;
+
+- (void)stopLoadingView;
+
 @end
 
 NS_ASSUME_NONNULL_END

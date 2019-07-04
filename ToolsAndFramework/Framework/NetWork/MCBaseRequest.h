@@ -15,8 +15,8 @@
 @property (nonatomic, strong) NSString *method;
 //超时时间
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
-//跳过自动报错提示
-@property (nonatomic, assign) BOOL skipErrorAlert;
+//请求描述
+@property (nonatomic, copy) NSString *methodDescription;
 
 - (NSMutableDictionary *)encodeUpperFirstLetter:(BOOL)isUpper;
 

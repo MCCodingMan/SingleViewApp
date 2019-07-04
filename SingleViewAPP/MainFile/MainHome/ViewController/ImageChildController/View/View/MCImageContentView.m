@@ -83,8 +83,8 @@
     return _imageTableView;
 }
 
--(void)dealloc {
-    [self removeObserver:self forKeyPath:@"MCImageRefresh"];
+- (void)dealloc {
+    [MC_NotificationCenter removeObserver:self forKeyPath:@"MCImageRefresh"];
 }
 
 @end

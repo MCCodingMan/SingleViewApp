@@ -40,6 +40,8 @@
 #define MC_PostNotification(name,obj,info) [[NSNotificationCenter defaultCenter] postNotificationName:name object:obj userInfo:info]
 //弱引用
 #define MC_Weak_Self(type)  __weak typeof(type) weak##type = type
+#define MC_Strong_Self(type) __strong typeof(type) self = type;
+
 //加载XIB宏定义
 #define MC_Load_Xib(xibName) [UINib nibWithNibName:xibName bundle:[NSBundle mainBundle]]
 //字符串组装

@@ -16,8 +16,6 @@ NSMutableDictionary *m_MCDic;
 
 - (id)init {
     if (self = [super init]) {
-        //设置请求方法
-        self.methodURL = @"";
         self.timeoutInterval = 30;
     }
     return self;

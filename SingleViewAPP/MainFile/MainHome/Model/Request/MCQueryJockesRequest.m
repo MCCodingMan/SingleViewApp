@@ -13,7 +13,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.methodURL = @"https://www.apiopen.top/satinGodApi?";
+        self.methodURL = @"https://www.apiopen.top/satinGodApi";
     }
     return self;
 }

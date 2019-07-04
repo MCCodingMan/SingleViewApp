@@ -10,8 +10,8 @@
 #import "UIImage+Resize.h"
 
 @implementation MCImageViewModel {
-    NSMutableArray<NSMutableArray *> *dataArr;
-    NSMutableArray<UIImage *> *imageDataArr;
+    NSMutableArray<NSMutableArray<MCQueryJockesResponse *> *> *dataArr;
+    NSMutableArray<NSMutableArray<UIImage *> *> *imageArr;
 }
 
 - (instancetype)init {
@@ -23,7 +23,7 @@
 
 - (void)initDataArr {
     dataArr = [[NSMutableArray alloc] init];
-    imageDataArr = [[NSMutableArray alloc] init];
+    imageArr = [[NSMutableArray alloc] init];
 }
 
 /**
@@ -41,19 +41,18 @@
         [weakself.jockeResponse decode:result];
         [self->dataArr addObject:weakself.jockeResponse.data];
         __block NSInteger imageLoadCout = 0;
+        NSMutableArray<UIImage *> *imageDataArr = [[NSMutableArray alloc] init];
         for (int i = 0; i < weakself.jockeResponse.data.count; i++) {
+            [imageDataArr addObject:[MC_ImageWithName(@"image_pic_default") resizableImageWithWidth:MC_SCREEN_WIDTH - 40]];
             [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:weakself.jockeResponse.data[i].image] options:SDWebImageAllowInvalidSSLCertificates progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-                
             } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                 imageLoadCout++;
                 if (image) {
                     UIImage *newImage = [image resizableImageWithWidth:MC_SCREEN_WIDTH - 40];
-                    [self->imageDataArr addObject:newImage];
-                }else{
-                    UIImage *newImage = [MC_ImageWithName(@"image_pic_default") resizableImageWithWidth:MC_SCREEN_WIDTH - 40];
-                    [self->imageDataArr addObject:newImage];
+                    [imageDataArr replaceObjectAtIndex:i withObject:newImage];
                 }
                 if (imageLoadCout == weakself.jockeResponse.data.count) {
+                    [self->imageArr addObject:imageDataArr];
                     complete();
                 }
             }];
@@ -79,13 +78,13 @@
     }
     cell.backgroundColor = [UIColor clearColor];
     cell.cellData = dataArr[indexPath.section][indexPath.row];
-    [cell.contentImageView setImage:imageDataArr[dataArr[indexPath.section].count * indexPath.section + indexPath.row]];
+    [cell.contentImageView setImage:imageArr[indexPath.section][indexPath.row]];
     return cell;
 }
 
 - (void)headerRefresh {
     [dataArr removeAllObjects];
-    [imageDataArr removeAllObjects];
+    [imageArr removeAllObjects];
     [[SDImageCache sharedImageCache] clearMemory];
     MC_PostNotification(@"MCImageRefresh", nil, nil);
 }

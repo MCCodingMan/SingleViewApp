@@ -10,15 +10,12 @@
 #import "MCTextTableViewCell.h"
 
 @implementation MCJockesViewModel {
-    float currentContentOffsetY;
     NSMutableArray<NSMutableArray *> *tableViewDataArr;
-    NSString *mainTabBarStatus;
 }
 
 - (instancetype)init {
     if (self = [super init]) {
         tableViewDataArr = [[NSMutableArray alloc] init];
-        mainTabBarStatus = @"";
     }
     return self;
 }
